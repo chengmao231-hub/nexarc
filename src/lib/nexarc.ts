@@ -17,10 +17,10 @@ export const ASSETS = {
 } as const;
 
 export const NAV = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Thesis", href: "#thesis" },
-  { label: "Community", href: "#community" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "FAQ", href: "#faq" },
-];
+  { key: "nav.home", href: "#home" },
+  { key: "nav.about", href: "#about" },
+  { key: "nav.thesis", href: "#thesis" },
+  { key: "nav.community", href: "#community" },
+  { key: "nav.roadmap", href: "#roadmap" },
+  { key: "nav.faq", href: "#faq" },
+] as const;

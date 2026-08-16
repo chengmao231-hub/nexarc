@@ -1,38 +1,39 @@
 import { ASSETS } from "@/lib/nexarc";
+import { useI18n, type Key } from "@/lib/i18n";
 import { Reveal, Section, SectionLabel } from "./ui";
 
-const GALLERY = [
+const GALLERY: { src: string; alt: string; caption: Key; span: string }[] = [
   {
     src: ASSETS.meme,
     alt: "NEXARC meme: mascot in a director's chair with a HODL LAUGH REPEAT mug",
-    caption: "In ARC we trust, memes we NEXARC",
+    caption: "culture.c1",
     span: "sm:col-span-2",
   },
   {
     src: ASSETS.buyChill,
     alt: "NEXARC mascot relaxing in a beanbag with NEXARC FUEL coffee under neon signs",
-    caption: "Buy NEXARC and chill",
+    caption: "culture.c2",
     span: "",
   },
   {
     src: ASSETS.mascot2,
     alt: "NEXARC mascot standing in techwear with headphones",
-    caption: "Certified ARC native",
+    caption: "culture.c3",
     span: "",
   },
 ];
 
 export function Culture() {
+  const { t } = useI18n();
+
   return (
     <Section id="culture">
       <Reveal>
-        <SectionLabel>Culture // 04</SectionLabel>
+        <SectionLabel>{t("culture.label")}</SectionLabel>
         <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.2rem)] font-black uppercase leading-[0.95]">
-          Meme <span className="text-arc-bright glow-text">Archive</span>
+          {t("culture.h1")} <span className="text-arc-bright glow-text">{t("culture.h2")}</span>
         </h2>
-        <p className="mt-5 max-w-xl text-muted-foreground">
-          HODL. Laugh. Repeat. The NEXARC culture feed — straight from the command center.
-        </p>
+        <p className="mt-5 max-w-xl text-muted-foreground">{t("culture.p")}</p>
       </Reveal>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -48,7 +49,7 @@ export function Culture() {
                 />
               </div>
               <figcaption className="hud-label border-t border-arc/25 px-4 py-3 text-[0.6rem] text-muted-foreground">
-                {g.caption}
+                {t(g.caption)}
               </figcaption>
             </figure>
           </Reveal>

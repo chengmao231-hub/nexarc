@@ -1,7 +1,10 @@
 import { ASSETS } from "@/lib/nexarc";
+import { useI18n } from "@/lib/i18n";
 import { Reveal, Section, SectionLabel } from "./ui";
 
 export function About() {
+  const { t } = useI18n();
+
   return (
     <Section id="about">
       <div className="grid items-center gap-14 lg:grid-cols-2">
@@ -21,36 +24,34 @@ export function About() {
 
         <div className="order-1 lg:order-2">
           <Reveal>
-            <SectionLabel>Identity // 01</SectionLabel>
+            <SectionLabel>{t("about.label")}</SectionLabel>
             <h2 className="text-[clamp(2rem,5vw,3.2rem)] font-black uppercase leading-[0.95]">
-              What is <span className="text-arc-bright glow-text">NEXARC</span>?
+              {t("about.h")} <span className="text-arc-bright glow-text">NEXARC</span>
+              {t("about.q")}
             </h2>
           </Reveal>
 
           <Reveal i={1}>
             <div className="panel clip-hud mt-7 p-6">
               <p className="text-muted-foreground">
-                NEXARC is a community-driven memecoin built around a simple idea:
-                <span className="font-semibold text-foreground"> the next meme on ARC.</span>
+                {t("about.p1a")}
+                <span className="font-semibold text-foreground">{t("about.p1b")}</span>
               </p>
             </div>
           </Reveal>
 
           <Reveal i={2}>
             <div className="mt-4 grid grid-cols-[1fr_auto_1fr_auto_1.2fr] items-center gap-2 text-center">
-              <Equation top="NEX" bottom="Next" />
+              <Equation top="NEX" bottom={t("about.eq1")} />
               <span className="text-2xl font-black text-arc">+</span>
-              <Equation top="ARC" bottom="Arc" />
+              <Equation top="ARC" bottom={t("about.eq2")} />
               <span className="text-2xl font-black text-arc">=</span>
-              <Equation top="NEXARC" bottom="The next meme" highlight />
+              <Equation top="NEXARC" bottom={t("about.eq3")} highlight />
             </div>
           </Reveal>
 
           <Reveal i={3}>
-            <p className="mt-6 text-muted-foreground">
-              The project is about building meme culture around the ARC ecosystem through
-              community, creativity, humor and internet-native energy.
-            </p>
+            <p className="mt-6 text-muted-foreground">{t("about.p2")}</p>
           </Reveal>
         </div>
       </div>

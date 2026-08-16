@@ -1,39 +1,22 @@
+import { useI18n, type Key } from "@/lib/i18n";
 import { Reveal, Section, SectionLabel } from "./ui";
 
-const PHASES = [
-  {
-    phase: "Phase 01",
-    title: "Launch",
-    items: ["Token launch on ARC", "Website & brand identity", "First meme drops"],
-    status: "Live",
-  },
-  {
-    phase: "Phase 02",
-    title: "Expansion",
-    items: ["Community growth", "Meme contests & raids", "Creator collabs"],
-    status: "Next",
-  },
-  {
-    phase: "Phase 03",
-    title: "Culture",
-    items: ["NEXARC lore & characters", "Ecosystem partnerships", "Wider ARC presence"],
-    status: "Soon",
-  },
-  {
-    phase: "Phase 04",
-    title: "Legacy",
-    items: ["The recognizable meme of ARC", "Community-led initiatives", "Endless memes"],
-    status: "Vision",
-  },
+const PHASES: { phase: Key; title: Key; status: Key; items: Key[] }[] = [
+  { phase: "road.p1", title: "road.p1t", status: "road.p1s", items: ["road.p1i1", "road.p1i2", "road.p1i3"] },
+  { phase: "road.p2", title: "road.p2t", status: "road.p2s", items: ["road.p2i1", "road.p2i2", "road.p2i3"] },
+  { phase: "road.p3", title: "road.p3t", status: "road.p3s", items: ["road.p3i1", "road.p3i2", "road.p3i3"] },
+  { phase: "road.p4", title: "road.p4t", status: "road.p4s", items: ["road.p4i1", "road.p4i2", "road.p4i3"] },
 ];
 
 export function Roadmap() {
+  const { t } = useI18n();
+
   return (
     <Section id="roadmap">
       <Reveal>
-        <SectionLabel>Trajectory // 05</SectionLabel>
+        <SectionLabel>{t("road.label")}</SectionLabel>
         <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.2rem)] font-black uppercase leading-[0.95]">
-          Flight <span className="text-arc-bright glow-text">Path</span>
+          {t("road.h1")} <span className="text-arc-bright glow-text">{t("road.h2")}</span>
         </h2>
       </Reveal>
 
@@ -52,17 +35,17 @@ export function Roadmap() {
               <Reveal i={i}>
                 <div className="clip-hud h-full border border-arc/25 bg-navy/50 p-5 backdrop-blur-sm transition-all duration-300 hover:border-arc hover:shadow-[0_0_44px_-16px_rgba(20,107,255,0.95)]">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="hud-label text-[0.58rem] text-arc-bright">{p.phase}</span>
+                    <span className="hud-label text-[0.58rem] text-arc-bright">{t(p.phase)}</span>
                     <span className="hud-label border border-arc/40 px-2 py-0.5 text-[0.5rem] text-muted-foreground">
-                      {p.status}
+                      {t(p.status)}
                     </span>
                   </div>
-                  <h3 className="mt-3 text-xl font-black uppercase">{p.title}</h3>
+                  <h3 className="mt-3 text-xl font-black uppercase">{t(p.title)}</h3>
                   <ul className="mt-3 space-y-1.5">
                     {p.items.map((it) => (
                       <li key={it} className="flex gap-2 text-sm text-muted-foreground">
                         <span aria-hidden="true" className="mt-1.5 h-1 w-1 shrink-0 bg-arc-bright" />
-                        {it}
+                        {t(it)}
                       </li>
                     ))}
                   </ul>

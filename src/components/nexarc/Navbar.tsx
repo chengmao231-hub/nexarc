@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Menu, X as Close } from "lucide-react";
 import { ASSETS, LINKS, NAV } from "@/lib/nexarc";
+import { useI18n } from "@/lib/i18n";
 import { BuyButton, TelegramIcon, XIcon } from "./ui";
+import { LangToggle } from "./LangToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -41,12 +44,13 @@ export function Navbar() {
               href={n.href}
               className="hud-label relative text-[0.64rem] text-muted-foreground transition-colors hover:text-arc-bright"
             >
-              {n.label}
+              {t(n.key)}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center justify-end gap-2">
+          <LangToggle />
           <div className="hidden items-center gap-1 sm:flex">
             <IconLink href={LINKS.x} label="Follow NEXARC on X">
               <XIcon className="h-4 w-4" />
@@ -59,10 +63,10 @@ export function Navbar() {
             href={LINKS.buy}
             target="_blank"
             rel="noopener noreferrer"
-            className="!px-4 !py-2.5 !text-[0.66rem]"
+            className="hidden !px-4 !py-2.5 !text-[0.66rem] sm:inline-flex"
             aria-label="Buy $NEXARC on Radardex"
           >
-            Buy $NEXARC
+            {t("nav.buy")}
           </BuyButton>
           <button
             type="button"
@@ -86,18 +90,26 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className="hud-label block border-b border-arc/12 py-3.5 text-[0.7rem] text-muted-foreground hover:text-arc-bright"
                 >
-                  {n.label}
+                  {t(n.key)}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <IconLink href={LINKS.x} label="Follow NEXARC on X">
               <XIcon className="h-4 w-4" />
             </IconLink>
             <IconLink href={LINKS.telegram} label="Join NEXARC on Telegram">
               <TelegramIcon className="h-4 w-4" />
             </IconLink>
+            <BuyButton
+              href={LINKS.buy}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="!px-4 !py-2.5 !text-[0.62rem]"
+            >
+              {t("nav.buy")}
+            </BuyButton>
           </div>
         </nav>
       )}
