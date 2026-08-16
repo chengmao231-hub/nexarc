@@ -54,22 +54,37 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [entered, setEntered] = useState(false);
+
   return (
-    <div className="relative min-h-screen text-foreground">
-      <Backdrop />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Thesis />
-        <Community />
-        <Culture />
-        <Roadmap />
-        <HowToBuy />
-        <Faq />
-        <FinalCta />
-      </main>
-      <Footer />
-    </div>
+    <LangProvider>
+      <EnterGate onEnter={() => setEntered(true)} />
+      <motion.div
+        initial={{ opacity: 0, scale: 1.06, filter: "blur(14px)" }}
+        animate={
+          entered
+            ? { opacity: 1, scale: 1, filter: "blur(0px)" }
+            : { opacity: 0, scale: 1.06, filter: "blur(14px)" }
+        }
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        className="relative min-h-screen text-foreground"
+      >
+        <Backdrop />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Thesis />
+          <Community />
+          <Culture />
+          <Roadmap />
+          <HowToBuy />
+          <Faq />
+          <FinalCta />
+        </main>
+        <Footer />
+      </motion.div>
+    </LangProvider>
   );
 }
+
