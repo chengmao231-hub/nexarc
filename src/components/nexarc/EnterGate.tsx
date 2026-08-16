@@ -45,17 +45,17 @@ export function EnterGate({ onEnter }: { onEnter: () => void }) {
           {/* iris wipe panels */}
           <motion.div
             aria-hidden="true"
-            initial={{ y: 0 }}
-            animate={leaving ? { y: "-100%" } : { y: 0 }}
-            transition={{ duration: 0.9, delay: 0.45, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute inset-x-0 top-0 z-30 h-1/2 border-b border-arc/60 bg-[#020817]"
+            initial={{ y: "-100%" }}
+            animate={leaving ? { y: ["-100%", "0%", "-100%"] } : { y: "-100%" }}
+            transition={{ duration: 1.4, times: [0, 0.35, 1], ease: [0.76, 0, 0.24, 1] }}
+            className="pointer-events-none absolute inset-x-0 top-0 z-30 h-1/2 border-b border-arc/60 bg-[#020817]"
           />
           <motion.div
             aria-hidden="true"
-            initial={{ y: 0 }}
-            animate={leaving ? { y: "100%" } : { y: 0 }}
-            transition={{ duration: 0.9, delay: 0.45, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute inset-x-0 bottom-0 z-30 h-1/2 border-t border-arc/60 bg-[#020817]"
+            initial={{ y: "100%" }}
+            animate={leaving ? { y: ["100%", "0%", "100%"] } : { y: "100%" }}
+            transition={{ duration: 1.4, times: [0, 0.35, 1], ease: [0.76, 0, 0.24, 1] }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-1/2 border-t border-arc/60 bg-[#020817]"
           />
 
           {/* flash */}
