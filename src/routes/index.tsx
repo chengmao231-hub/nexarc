@@ -1,24 +1,71 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Backdrop } from "@/components/nexarc/Backdrop";
+import { Navbar } from "@/components/nexarc/Navbar";
+import { Hero } from "@/components/nexarc/Hero";
+import { About } from "@/components/nexarc/About";
+import { Thesis } from "@/components/nexarc/Thesis";
+import { Community } from "@/components/nexarc/Community";
+import { Culture } from "@/components/nexarc/Culture";
+import { Roadmap } from "@/components/nexarc/Roadmap";
+import { HowToBuy } from "@/components/nexarc/HowToBuy";
+import { Faq, FAQ_ITEMS } from "@/components/nexarc/Faq";
+import { FinalCta, Footer } from "@/components/nexarc/FinalCta";
+
+const TITLE = "NEXARC ($NEXARC) — The Next Meme on ARC";
+const DESC =
+  "NEXARC is a community-driven memecoin on the ARC chain. Memes, culture and community energy for the next chapter of ARC. Buy $NEXARC on Radardex.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
+      { name: "theme-color", content: "#020817" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_ITEMS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative min-h-screen text-foreground">
+      <Backdrop />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Thesis />
+        <Community />
+        <Culture />
+        <Roadmap />
+        <HowToBuy />
+        <Faq />
+        <FinalCta />
+      </main>
+      <Footer />
     </div>
   );
 }
