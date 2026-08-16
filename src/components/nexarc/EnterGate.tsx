@@ -9,15 +9,18 @@ export function EnterGate({ onEnter }: { onEnter: () => void }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (leaving) return;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [leaving]);
 
   const handleEnter = () => {
     if (leaving) return;
     setLeaving(true);
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
     window.setTimeout(() => onEnter(), 900);
     window.setTimeout(() => setVisible(false), 1700);
   };
