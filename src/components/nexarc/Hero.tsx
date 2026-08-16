@@ -5,7 +5,7 @@ import { BuyButton, GhostButton, TelegramIcon, XIcon, fadeUp } from "./ui";
 import { Particles } from "./Backdrop";
 
 export function Hero() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <section id="home" className="relative overflow-hidden px-5 pb-24 pt-32 sm:px-8 lg:pb-32 lg:pt-40">
@@ -27,7 +27,7 @@ export function Hero() {
             custom={1}
             initial="hidden"
             animate="show"
-            className="mt-7 text-[clamp(2.9rem,8.5vw,5.6rem)] font-black uppercase leading-[0.88]"
+            className={`mt-7 text-[clamp(2.9rem,8.5vw,5.6rem)] font-black uppercase ${lang === "zh" ? "leading-[1.1] tracking-tight" : "leading-[0.88]"}`}
           >
             <span className="block text-foreground">{t("hero.t1")}</span>
             <span className="block text-foreground">{t("hero.t2")}</span>
