@@ -1,6 +1,10 @@
+import { useState } from "react";
+import { motion } from "motion/react";
 import { createFileRoute } from "@tanstack/react-router";
 
+import { LangProvider } from "@/lib/i18n";
 import { Backdrop } from "@/components/nexarc/Backdrop";
+import { EnterGate } from "@/components/nexarc/EnterGate";
 import { Navbar } from "@/components/nexarc/Navbar";
 import { Hero } from "@/components/nexarc/Hero";
 import { About } from "@/components/nexarc/About";
