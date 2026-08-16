@@ -1,7 +1,10 @@
 import { ASSETS, LINKS } from "@/lib/nexarc";
+import { useI18n } from "@/lib/i18n";
 import { GhostButton, Reveal, Section, SectionLabel, TelegramIcon, XIcon } from "./ui";
 
 export function Community() {
+  const { t } = useI18n();
+
   return (
     <Section id="community">
       <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
@@ -21,14 +24,11 @@ export function Community() {
 
         <div>
           <Reveal>
-            <SectionLabel>Community // 03</SectionLabel>
+            <SectionLabel>{t("community.label")}</SectionLabel>
             <h2 className="text-[clamp(2rem,5vw,3.2rem)] font-black uppercase leading-[0.95]">
-              Powered by <span className="text-arc-bright glow-text">People</span>
+              {t("community.h1")} <span className="text-arc-bright glow-text">{t("community.h2")}</span>
             </h2>
-            <p className="mt-5 max-w-xl text-muted-foreground">
-              NEXARC is powered by its community. No promises, no roadmap theater — just memes,
-              momentum and the people who show up.
-            </p>
+            <p className="mt-5 max-w-xl text-muted-foreground">{t("community.p")}</p>
           </Reveal>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -36,7 +36,7 @@ export function Community() {
               <SocialCard
                 href={LINKS.x}
                 label="X / Twitter"
-                desc="Memes, announcements and daily NEXARC energy."
+                desc={t("community.xd")}
                 icon={<XIcon className="h-5 w-5" />}
               />
             </Reveal>
@@ -44,7 +44,7 @@ export function Community() {
               <SocialCard
                 href={LINKS.telegram}
                 label="Telegram"
-                desc="The main hub. Where the fam actually lives."
+                desc={t("community.tgd")}
                 icon={<TelegramIcon className="h-5 w-5" />}
               />
             </Reveal>
@@ -53,7 +53,7 @@ export function Community() {
           <Reveal i={3}>
             <div className="mt-5">
               <GhostButton href={LINKS.buy} target="_blank" rel="noopener noreferrer">
-                Trade on Radardex
+                {t("community.trade")}
               </GhostButton>
             </div>
           </Reveal>
