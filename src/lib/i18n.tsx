@@ -296,7 +296,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("nexarc-lang");
-    if (saved === "en" || saved === "zh") setLangState(saved);
+    if (saved === "en" || saved === "zh") {
+      setLangState(saved);
+      document.documentElement.lang = saved === "zh" ? "zh-CN" : "en";
+    }
   }, []);
 
   const setLang = useCallback((l: Lang) => {
